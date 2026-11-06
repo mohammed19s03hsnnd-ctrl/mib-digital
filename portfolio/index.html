@@ -4,6 +4,10 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#10091f">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="ar_PS">
+  <meta property="og:title" content="محمد ابراهيم | معرض الأعمال">
+  <meta property="og:description" content="التصميم الجرافيكي والموشن جرافيك وفيديوهات الذكاء الاصطناعي">
   <meta name="description" content="معرض أعمال تفاعلي يشمل التصميم الجرافيكي والموشن جرافيك وفيديوهات الذكاء الاصطناعي.">
   <title>محمد ابراهيم | معرض الأعمال</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -271,6 +275,25 @@ body.editing,body.modal-open{overflow:hidden}.print-gallery .is-custom-cover{bac
  .wire-hero .wire-hero-buttons{margin-top:23px}
 }
 
+
+/* Portfolio 2026 - usability and polish upgrade */
+.gallery-actions{display:flex;align-items:center;gap:12px;flex-wrap:wrap;justify-content:flex-end}
+.portfolio-search{min-width:min(290px,70vw);height:44px;display:flex;align-items:center;gap:9px;border:1px solid rgba(212,180,255,.27);border-radius:50px;padding:0 15px;background:linear-gradient(150deg,rgba(255,255,255,.105),rgba(150,88,235,.065));backdrop-filter:blur(15px);-webkit-backdrop-filter:blur(15px);box-shadow:inset 0 1px rgba(255,255,255,.05);color:#c7a2ff;transition:border-color .2s,box-shadow .2s}
+.portfolio-search:focus-within{border-color:#c58fff;box-shadow:0 0 0 3px rgba(158,101,255,.18)}
+.portfolio-search span{font-size:25px;font-family:Arial,sans-serif;line-height:1}
+.portfolio-search input{border:0;outline:0;background:transparent;color:white;font:700 12px 'Cairo',Tahoma,sans-serif;width:100%;min-width:0}
+.portfolio-search input::placeholder{color:#ab96c6;opacity:1}
+.portfolio-search input::-webkit-search-cancel-button{cursor:pointer;filter:grayscale(1) invert(.85)}
+.demo-disclaimer{width:min(1180px,calc(100% - 60px));margin:8px auto 0;text-align:center;font-size:12px;color:#aa96c7;line-height:1.8}
+.page-progress{position:fixed;z-index:100;top:0;right:0;height:3px;width:0;background:linear-gradient(90deg,#ffc6e8,#bb8bff,#7f3edb);box-shadow:0 0 16px #ae71ff95;pointer-events:none;transition:width .1s linear}
+.quick-actions{position:fixed;z-index:42;bottom:24px;left:24px;display:flex;flex-direction:column;gap:11px}
+.quick-actions a,.quick-actions button{display:grid;place-items:center;width:46px;height:46px;border-radius:50%;border:1px solid rgba(232,206,255,.34);color:#f7eaff;background:linear-gradient(150deg,rgba(139,72,225,.27),rgba(20,10,42,.76));backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);font:700 24px Arial,sans-serif;box-shadow:0 12px 29px #07021156;cursor:pointer;transition:background .2s,transform .2s}
+.quick-actions a:hover,.quick-actions button:hover{background:rgba(143,75,235,.55);transform:translateY(-4px)}
+.copy-toast{position:fixed;bottom:24px;left:84px;z-index:90;max-width:min(350px,calc(100vw - 110px));padding:12px 19px;border-radius:15px;border:1px solid #c8a1f75a;background:rgba(30,15,53,.97);color:white;box-shadow:0 14px 40px #0008;font-size:13px;font-weight:700}
+html{scroll-padding-top:112px}
+@media(max-width:760px){.gallery-topline{gap:13px;flex-direction:column;align-items:stretch}.gallery-actions{width:100%;justify-content:space-between}.portfolio-search{min-width:0;flex:1}.quick-actions{left:12px;bottom:15px;gap:8px}.quick-actions a,.quick-actions button{width:40px;height:40px;font-size:20px}.demo-disclaimer{width:calc(100% - 32px)}.copy-toast{bottom:20px;left:65px}.wire-header .mobile-menu{background:linear-gradient(155deg,rgba(37,20,63,.96),rgba(16,8,31,.98));backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);border:1px solid rgba(234,211,255,.23);box-shadow:0 16px 45px #04010a96}}
+@media(prefers-reduced-motion:reduce){.page-progress,.quick-actions a,.quick-actions button{transition:none}}
+
 </style>
 </head>
 <body class="published">
@@ -324,7 +347,7 @@ body.editing,body.modal-open{overflow:hidden}.print-gallery .is-custom-cover{bac
       <div class="section-heading reveal"><div><span class="section-index">01 / SELECTED WORKS</span><h2 id="worksTitle">أعمــالـي<span class="purple-dot">.</span></h2><p>من الفكرة إلى التفاصيل — مجموعة من مشاريعي</p></div><span class="side-watermark">CREATIVE WORK</span></div>
       <div class="gallery-topline reveal">
         <div class="category-filters" id="categoryFilters" aria-label="تصفية المشاريع"></div>
-        <div class="gallery-actions"><span class="projects-total" id="projectsTotal">0 مشروع</span></div>
+        <div class="gallery-actions"><label class="portfolio-search" for="portfolioSearch"><span aria-hidden="true">⌕</span><input id="portfolioSearch" type="search" placeholder="ابحث عن مشروع أو تصنيف..." aria-label="ابحث في أعمالي" autocomplete="off"></label><span class="projects-total" id="projectsTotal">0 مشروع</span></div>
       </div>
       <div class="carousel-shell reveal">
         <div class="carousel-viewport" id="carouselViewport">
@@ -334,6 +357,7 @@ body.editing,body.modal-open{overflow:hidden}.print-gallery .is-custom-cover{bac
         <div class="carousel-bar"><button class="carousel-control" id="prevSlide" type="button" aria-label="التصميم السابق">❯</button><div class="carousel-progress" id="carouselProgress" aria-label="تقدم معرض الصور"></div><button class="carousel-control" id="nextSlide" type="button" aria-label="التصميم التالي">❮</button></div>
       </div>
       <div class="work-detail-row" id="workDetailRow" aria-live="polite"></div>
+      <p class="demo-disclaimer" id="demoDisclaimer" hidden>بعض المعروضات الحالية أمثلة تجريبية؛ ستُستبدل بأعمال محمد ابراهيم الأصلية.</p>
     </section>
 
     <section class="section print-section" id="print" aria-labelledby="printTitle">
@@ -390,6 +414,8 @@ body.editing,body.modal-open{overflow:hidden}.print-gallery .is-custom-cover{bac
     </section>
   </main>
 
+  <div id="pageProgress" class="page-progress" aria-hidden="true"></div>
+  <div class="quick-actions" aria-label="إجراءات الموقع"><a href="#home" class="quick-top" aria-label="العودة إلى بداية الصفحة" title="العودة للأعلى">↑</a><button type="button" class="quick-share" id="sharePortfolio" aria-label="مشاركة موقع معرض الأعمال" title="مشاركة الموقع">↗</button></div><div class="copy-toast" id="copyToast" role="status" aria-live="polite" hidden></div>
   <footer class="site-footer"><span>© <span id="year"></span> معرض أعمال شخصي • صُمّم للإبداع</span><a href="#home">العودة للأعلى ↑</a><button class="owner-entry" id="ownerEntry" type="button" title="دخول المالك">🔐 دخول المالك</button><span class="footer-sparkle">✦</span></footer>
 
   <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="عرض المشروع" aria-hidden="true">
@@ -482,6 +508,8 @@ window.PORTFOLIO_CONFIG = {
   const DEFAULT_AVATAR='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI5MDAiIGhlaWdodD0iMTA4MCIgdmlld0JveD0iMCAwIDkwMCAxMDgwIj48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImIiIHgxPSIwIiB5MT0iMCIgeDI9IjEiIHkyPSIxIj48c3RvcCBzdG9wLWNvbG9yPSIjMjQxNTQzIi8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjMzYyMDY1Ii8+PC9saW5lYXJHcmFkaWVudD48cmFkaWFsR3JhZGllbnQgaWQ9ImciPjxzdG9wIHN0b3AtY29sb3I9IiM5YjZmZTQiIHN0b3Atb3BhY2l0eT0iLjM1Ii8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjOWI2ZmU0IiBzdG9wLW9wYWNpdHk9IjAiLz48L3JhZGlhbEdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0iOTAwIiBoZWlnaHQ9IjEwODAiIGZpbGw9InVybCgjYikiLz48Y2lyY2xlIGN4PSI0NTAiIGN5PSI0ODAiIHI9IjQzMCIgZmlsbD0idXJsKCNnKSIvPjxjaXJjbGUgY3g9IjQ1MCIgY3k9IjQxMiIgcj0iMTk1IiBmaWxsPSIjODQ2OWI4IiBvcGFjaXR5PSIuMyIvPjxjaXJjbGUgY3g9IjQ1MCIgY3k9IjQwNSIgcj0iMTI5IiBmaWxsPSIjYWM4Y2RiIiBvcGFjaXR5PSIuNzMiLz48cGF0aCBkPSJNMjA1IDkyMGM0LTE4MSA5MC0zMDMgMjQ1LTMwM1M2OTAgNzQwIDY5NSA5MjAiIGZpbGw9IiNhODhhZDUiIG9wYWNpdHk9Ii43NSIvPjxwYXRoIGQ9Ik0yODggNjUyYzU1IDUxIDEwNSA3MiAxNjIgNzJzMTEyLTIyIDE2NS03MiIgc3Ryb2tlPSIjYzZiMGVkIiBvcGFjaXR5PSIuNSIgc3Ryb2tlLXdpZHRoPSIxNCIgZmlsbD0ibm9uZSIvPjxjaXJjbGUgY3g9IjQ1MCIgY3k9IjQ4MCIgcj0iMzIwIiBzdHJva2U9IiNiOTk4ZWYiIG9wYWNpdHk9Ii4xMiIgc3Ryb2tlLXdpZHRoPSIyIiBmaWxsPSJub25lIi8+PGNpcmNsZSBjeD0iNDUwIiBjeT0iNDgwIiByPSIzNjUiIHN0cm9rZT0iI2I5OThlZiIgb3BhY2l0eT0iLjA4IiBzdHJva2Utd2lkdGg9IjIiIGZpbGw9Im5vbmUiLz48L3N2Zz4=';
   const DEFAULT_PROFILE={name:'محمد ابراهيم',role:'Graphic Designer',tagline:'جرافيك ديزاين • موشن جرافيك • فيديوهات AI',bio:'متخصص في تصميم الإعلانات والمحتوى البصري للعلامات التجارية والسوشيال ميديا، بالإضافة إلى الموشن جرافيك وصناعة الفيديوهات بالذكاء الاصطناعي.',email:'',whatsapp:'',instagram:'',experience:0,clients:0,accent:'#a66aff',avatar:DEFAULT_AVATAR};
   const state={projects:[],profile:{...DEFAULT_PROFILE},filter:'الكل',videoFilter:'الكل',idx:0,photoIdx:0,maxSlide:0,step:294};
+  const searchText=()=>String($('#portfolioSearch')?.value||'').trim().toLocaleLowerCase('ar').normalize('NFKC').replace(/[\u064B-\u065F]/g,'').replace(/[أإآ]/g,'ا');
+  const matchSearch=p=>{const q=searchText();if(!q)return true;const content=[p.title,p.description,p.category].join(' ').toLocaleLowerCase('ar').normalize('NFKC').replace(/[\u064B-\u065F]/g,'').replace(/[أإآ]/g,'ا');return content.includes(q);};
   const imageURL=p=>p?.src||'';
   const safeLink=url=>{try{const u=new URL(url);return ['https:','http:'].includes(u.protocol)?u.href:''}catch{return''}};
   const videoURL=p=>p.videoSrc||safeLink(p.videoUrl)||'';
@@ -555,10 +583,11 @@ window.PORTFOLIO_CONFIG = {
     if(isVideo(p)){card.classList.add('is-video-card');card.append(makeVideoThumb(p));}else{const img=makeEl('img',{src:imageURL(p),alt:p.title,loading:i<3?'eager':'lazy'});card.append(img);}
     const hover=makeEl('span',{class:'poster-hover'});hover.append(makeEl('span',{class:'poster-info'},p.category),makeEl('span',{class:'poster-title'},p.title),makeEl('b',{},'↗'));card.append(hover);
     card.addEventListener('click',()=>{if(!dragMoved)openPhoto(i);});return card;}
-  function renderGallery(){visible=state.filter==='الكل'?[...state.projects]:state.projects.filter(p=>p.category===state.filter);track.replaceChildren();progress.replaceChildren();
-    if(!visible.length){const blank=makeEl('div',{class:'empty-work'});blank.append(makeEl('div',{style:'font-size:46px;color:#b887ff'},'✧'),makeEl('b',{},state.projects.length?'لا توجد مشاريع في هذا التصنيف':'معرضك جاهز لأعمالك!'),makeEl('span',{},'لا توجد أعمال منشورة في هذا القسم حتى الآن.'));track.append(blank);}
+  function renderGallery(){visible=(state.filter==='الكل'?[...state.projects]:state.projects.filter(p=>p.category===state.filter)).filter(matchSearch);track.replaceChildren();progress.replaceChildren();
+    if(!visible.length){const blank=makeEl('div',{class:'empty-work'});blank.append(makeEl('div',{style:'font-size:46px;color:#b887ff'},'✧'),makeEl('b',{},searchText()?'لم نعثر على مشروع مطابق للبحث':(state.projects.length?'لا توجد مشاريع في هذا التصنيف':'معرضك جاهز لأعمالك!')),makeEl('span',{},searchText()?'جرّب كلمة بحث أخرى أو اختر كل التصنيفات.':'لا توجد أعمال منشورة في هذا القسم حتى الآن.'));track.append(blank);}
     else visible.forEach((p,i)=>{track.append(makeCard(p,i));const dot=makeEl('button',{type:'button',class:'progress-dot','aria-label':'الانتقال إلى المشروع '+(i+1)});dot.addEventListener('click',()=>goToSlide(i,true));progress.append(dot);});
-    defer(measure);updateProjectCount();const detail=$('#workDetailRow');detail.textContent=visible.length?`عرض ${visible.length} من أعمالك الإبداعية — اضغط على أي مشروع لمشاهدته أو تشغيل الفيديو`:'لا توجد مشاريع منشورة حتى الآن.';}
+    defer(measure);updateProjectCount();const detail=$('#workDetailRow');const demo=$('#demoDisclaimer');if(demo){const count=state.projects.filter(p=>/تجريبي|الريلز المرجعي|placeholder/i.test(String(p.description||''))).length;demo.hidden=!(count>0);}
+    detail.textContent=visible.length?`عرض ${visible.length} من أعمالك الإبداعية — اضغط على أي مشروع لمشاهدته أو تشغيل الفيديو`:(searchText()?'لا توجد نتائج مطابقة. جرّب اسمًا آخر أو امسح البحث.':'لا توجد مشاريع منشورة في هذا القسم حاليًا.');}
   function measure(){const first=$('.poster-card',track);if(!first){state.idx=0;track.style.transform='translate3d(0,0,0)';return;}
     state.step=first.getBoundingClientRect().width+(parseFloat(getComputedStyle(track).gap)||22);
     const visibleCount=Math.max(1,Math.floor((viewport.clientWidth-25)/state.step));
@@ -604,6 +633,7 @@ window.PORTFOLIO_CONFIG = {
     filtered.forEach((p,i)=>{const card=makeEl('button',{type:'button',class:'video-showcase-card','aria-label':'مشاهدة فيديو '+p.title});card.append(makeVideoThumb(p));const info=makeEl('div',{class:'video-card-info'}),small=makeEl('span',{class:'video-card-label'},p.category),title=makeEl('h3',{},p.title),desc=makeEl('p',{},p.description||'شاهد هذا المشروع الإبداعي');info.append(small,title,desc);card.append(info);card.addEventListener('click',()=>{setFilter('الكل');state.photoIdx=state.projects.findIndex(x=>x.id===p.id);openPhoto(state.photoIdx);});grid.append(card)});
     $('#videoCountMessage').textContent=all.length?'عرض '+filtered.length+' من '+all.length+' فيديو':'لا توجد فيديوهات منشورة بعد.';}
   function renderAll(){sortProjects();renderGallery();renderOtherGalleries();renderVideoFilters();renderVideoGallery();}
+  $('#portfolioSearch')?.addEventListener('input',()=>{state.idx=0;renderGallery()});
 
   // Baseline motion, navigation and 3D printed-book effects
   const mask=$('#loadingMask');const hideLoader=()=>mask?.classList.add('is-hidden');if(document.readyState==='complete')hideLoader();else window.addEventListener('load',hideLoader,{once:true});setTimeout(hideLoader,900);
@@ -936,6 +966,25 @@ window.PORTFOLIO_CONFIG = {
   })();
   // لا تترك واجهة الزائر محجوبة حتى لو فشل تحميل خط أو ملف خارجي.
   setTimeout(function(){var x=document.getElementById('loadingMask');if(x)x.classList.add('is-hidden');},2000);
+</script>
+<script>
+(()=>{
+  const progress=document.getElementById('pageProgress');
+  let pending=false;
+  const update=()=>{pending=false;const max=Math.max(1,document.documentElement.scrollHeight-innerHeight);progress.style.width=Math.min(100,Math.max(0,scrollY/max*100))+'%';};
+  addEventListener('scroll',()=>{if(!pending){pending=true;requestAnimationFrame(update)}},{passive:true});addEventListener('resize',update);update();
+  const btn=document.getElementById('sharePortfolio'),toast=document.getElementById('copyToast');
+  let toastTimer;
+  const message=t=>{toast.textContent=t;toast.hidden=false;clearTimeout(toastTimer);toastTimer=setTimeout(()=>{toast.hidden=true},3200)};
+  btn?.addEventListener('click',async()=>{
+    const url=location.protocol==='file:'?'':location.href.split('#')[0];
+    if(!url){message('انسخ رابط موقعك بعد نشره على GitHub Pages');return;}
+    try{if(navigator.share){await navigator.share({title:document.title,url});return;}}
+    catch(e){if(e?.name==='AbortError')return;}
+    try{await navigator.clipboard.writeText(url);message('تم نسخ رابط معرض الأعمال ✓')}
+    catch{message('انسخ الرابط من شريط العنوان للمشاركة')}
+  });
+})();
 </script>
 </body>
 </html>
